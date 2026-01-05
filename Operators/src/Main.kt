@@ -43,7 +43,7 @@ fun main() {
     println("x = $x")
 
     var isActive = false
-    if(true == isActive) { // Personal note: this is Yoda Notation - a standard I follow.
+    if (true == isActive) { // Personal note: this is Yoda Notation - a standard I follow.
         println("The condition is true.")
     } else {
         println("The condition is false.")
@@ -99,4 +99,40 @@ fun main() {
     } else {
         println("You are at the same level.")
     }
+
+    var num1 = 5
+    val num2 = -3
+    if (0 < num1 || 0 < num2) {
+        println("The condition is true.")
+    } else {
+        println("The condition is false.")
+    }
+
+//    Personal scope test
+    if (true) {
+        val myScopeTest = true
+    }
+//    println("myScopeTest = $myScopeTest") // Can't do it.
+
+    var text = if (0 < num1 || 0 < num2) {
+        println("The condition is true")
+        "This is text 1"
+    } else {
+        println("The condition is false")
+        "This is text 2"
+    }
+    println("text = $text")
+
+    num1 = -5
+    val text2 = if (0 < num1 || 0 < num2) "This is text 1" else 5
+    println("text2 = $text2")
+
+    num1 = -5
+    if (0 < num1 || 0 < num2)
+        println("The condition is true.")
+        println("This condition is true and some text.") // This still gets executed.
+//    Use curly braces.
+//    Only omit curly braces if you have 1 single expression.
+
+    if (0 < num1 || 0 < num2) println("The condition is true.") else println("This condition is false")
 }
