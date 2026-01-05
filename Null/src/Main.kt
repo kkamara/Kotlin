@@ -32,7 +32,7 @@ fun main() {
     println(text4)
 
     var text5 = ""
-    // Elvis operator (?:) does the following...
+    // Elvis operator ?: does the following...
     if (null != text5) {
         text5 = text4
     } else {
