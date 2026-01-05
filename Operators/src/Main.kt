@@ -1,0 +1,67 @@
+fun main() {
+    var x = 5
+    val y = 3.0
+
+//    val result = x + y
+//    println("result = $result")
+
+//    All expressions in curly braces are type double.
+//    If y = 3.0f the precision gets lowered.
+    println("x + y = ${x + y}")
+    println("x - y = ${x - y}")
+    println("x * y = ${x * y}")
+    println("x / y = ${x / y}")
+    println("x % y = ${x % y}")
+
+    println("3 + 3 * 4 = ${(3 + 3) * 4}")
+
+    var result = x + y
+
+    result += 2
+    println("result = $result")
+
+    result -= 2
+    println("result = $result")
+
+    result *= 2
+    println("result = $result")
+
+    result /= 2
+    println("result = $result")
+
+    result %= 2
+    println("result = $result")
+
+    x = 0
+
+    println("x++ = ${x++}")
+    println("++x = ${++x}")
+    println("x = $x")
+
+    println("x-- = ${x--}")
+    println("--x = ${--x}")
+    println("x = $x")
+
+    val isActive = false
+    if(true == isActive) { // Personal note: this is Yoda Notation - a standard I follow.
+        println("The condition is true.")
+    } else {
+        println("The condition is false.")
+    }
+//    if (isActive)
+
+    var myNumber = 5
+    if (4 < myNumber)
+        println("The number is greater than 4.")
+    else
+        println("The condition is false.")
+
+    myNumber = 4
+    if (5 < myNumber) {
+        println("The number is greater than 5.")
+    } else if (4 <= myNumber) {
+        println("The number is greater than 4.")
+    } else {
+        println("The condition is false.")
+    }
+}
