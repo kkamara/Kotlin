@@ -23,6 +23,9 @@ fun main() {
 //    sendMessage("Kel")
     sendMessage()
     sendMessage(message = "Hello", name="Jane Doe")
+
+//    println(sum(5, 6, 7, 10, 4, 4, 6, 5))
+    sum(5, 6, 7, 10, 4, 4, 6, 5)
 }
 
 fun sayHello(name: String, age: Int) { // Params are scoped within sayHello().
@@ -68,3 +71,15 @@ fun sendMessage(name: String = "User", message: String = sendText()) {
 }
 
 fun sendText() = "Some text."
+
+/*fun sum(vararg numbers: Int): Int {
+    var result = 0
+    for (number in numbers) {
+        result += number
+    }
+    return result
+}*/
+
+fun sum(vararg numbers: Int) {
+    numbers.forEach { println(it) }
+}
