@@ -1,26 +1,21 @@
 fun main() {
-    // Using secondary constructor.
+    // Named arguments can only be used with primary constructors.
     val user = User("Kel")
-    val friend = User("John", "Smith")
+    val friend = User(firstName = "John", lastName = "Smith")
+    val user2 = User(age = 19, firstName = "Ioana", lastName = "Dobbi")
 
-    println("Name = ${user.name}")
+    println("FirstName = ${user.firstName}")
     println("LastName = ${user.lastName}")
     println("Age = ${user.age}")
 
     println()
 
-    println("Name = ${friend.name}")
+    println("FirstName = ${friend.firstName}")
     println("LastName = ${friend.lastName}")
     println("Age = ${friend.age}")
 }
 
-class User(var name: String, var lastName: String, var age: Int) {
-    // Secondary constructors cannot declare properties, only params.
-    constructor(name: String): this(name, "LastName", 0) {
-        println("2nd")
-    }
-
-    constructor(name: String, lastName: String) : this(name, lastName, 0) {
-        println("3rd")
-    }
+class User(var firstName: String, var lastName: String = "LastName", var age: Int = 0) {
+//    init {}
+//    constructor(firstName: String, lastName: String) : this(firstName, lastName) {}
 }
