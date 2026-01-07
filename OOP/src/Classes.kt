@@ -10,12 +10,14 @@ class Car(name: String, var model: String, var color: String, var doors: Int) {
     }
 }
 
-class User(var firstName: String, var lastName: String, var age: Int) {
-    lateinit var favoriteMovie: String // lateint only on reference types.
-}
-
 class Calculator {
     companion object {
         fun sum(a: Int, b: Int): Int = a + b
+    }
+}
+
+object Database {
+    init {
+        println("Database created.")
     }
 }
