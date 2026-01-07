@@ -4,7 +4,7 @@ fun main() {
 //    car1.model = "S Plaid"
 //    car1.color = "Red"
 //    car1.doors = 4
-//
+/*
     println("Name = ${car1.name}")
     println("Model = ${car1.model}")
     println("Color = ${car1.color}")
@@ -23,15 +23,28 @@ fun main() {
 
     car2.move()
     car2.stop()
+ */
+    val user = User("Kel", "Kamara", 29)
+//    val friend = User("John", "Smith", 30)
+//    val friend = User("Kev", "Smith", 30)
+    val friend = User("John", "Smith", 30)
+
+    println("Name ${friend.name}")
 }
 
-class Car(name: String, var model: String, var color: String, var doors: Int) {
-    var name = name.trim()
-    fun move() {
-        println("The car $name is moving.")
+class User(name: String, var lastName: String, var age: Int) {
+    var name: String
+
+    init {
+        if (name.lowercase().startsWith('k')) {
+            this.name = name
+        } else {
+            this.name = "User"
+            println("The name doesn't start with the letter 'k' or 'K'.")
+        }
     }
 
-    fun stop() {
-        println("The car $name has stopped.")
+    init { // The order of which initialiser blocks are declared matters.
+
     }
 }
