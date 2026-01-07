@@ -1,10 +1,11 @@
 fun main() {
-    val user = User("Kel", "Kamara", 29)
-
-    user.favoriteMovie = "Interstellar"
-    println(user.favoriteMovie)
+    val result = Calculator.sum(5, 10)
+    val max = Int.MAX_VALUE
+    println(result)
 }
 
-class User(var firstName: String, var lastName: String, var age: Int) {
-    lateinit var favoriteMovie: String // lateint only on reference types.
+class Calculator {
+    companion object {
+        fun sum(a: Int, b: Int): Int = a + b
+    }
 }
