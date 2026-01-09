@@ -1,11 +1,9 @@
 fun main() {
-    val numbers = mutableListOf(
-        "one", "two", "three", "four"
+    val numbers = listOf(
+        "one", "two", "three", "four", "five"
     )
-    val plusList = numbers + "five"
-    val minusList = numbers - mutableListOf(
-        "three", "four"
+    println(numbers.groupBy { it.first().uppercase() })
+    println(numbers.groupBy(
+        keySelector = { it.first() }, valueTransform = { it.uppercase() })
     )
-    println(plusList)
-    println(minusList)
 }
