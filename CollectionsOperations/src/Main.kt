@@ -7,12 +7,21 @@ fun main() {
 private fun searchElement(
     searchedElement: Int, numbers: MutableList<Int>
 ): Int {
+    var low = 0
+    val high = numbers.size - 1
+
     var i = 0
-    for (number in numbers) {
+    while(low <= high) {
         i++
         println("Searched number: $i")
-        if (number == searchedElement) {
-            return number
+        val mid = (low + high) / 2
+        val cmp = numbers[mid].compareTo(searchedElement)
+        if (0 > cmp) {
+            low = mid + 1
+        } else if (cmp > 0) {
+            low = mid - 1
+        } else {
+            return numbers[mid]
         }
     }
     return -1
