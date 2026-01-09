@@ -46,3 +46,27 @@ class ListView(val items: Array<String>) {
         }
     }
 }
+
+open class Vehicle(open val name: String, val color: String) {
+    open fun move() {
+        println("$name is moving.")
+    }
+
+    fun stop() {
+        println("$name has stopped.")
+    }
+}
+
+class Car(override val name: String, color: String, val engines: Int, val doors: Int): Vehicle(name, color) {
+}
+
+class Plane(name: String, color: String, val engines: Int, val doors: Int): Vehicle(name, color) {
+    override fun move() {
+        this.flying()
+        super.move()
+    }
+
+    fun flying() {
+        println("$name is flying.")
+    }
+}

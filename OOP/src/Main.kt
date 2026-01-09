@@ -1,34 +1,34 @@
 fun main() {
-    val car = Car("BMW", "RED", 1, 4)
-    val plane = Plane("Boeing", "WHITE and BLUE", 4, 4)
+    val success = Result.Success("SUCCESS!")
+    val progress = Result.Progress("PROGRESS!")
 
-    car.move()
-    car.stop()
-
-    plane.move()
-    plane.stop()
+    getData(progress)
 }
 
-open class Vehicle(open val name: String, val color: String) {
-    open fun move() {
-        println("$name is moving.")
-    }
-
-    fun stop() {
-        println("$name has stopped.")
+fun getData(result: Result) {
+    when(result) {
+        is Result.Success -> result.showMessage()
+        is Result.Progress -> result.showMessage()
+        is Result.Error.NonRecoverableError -> result.showMessage()
+        is Result.Error.RecoverableError -> result.showMessage()
     }
 }
 
-class Car(override val name: String, color: String, val engines: Int, val doors: Int): Vehicle(name, color) {
-}
+sealed class Test {
+    class Test2(): Test() { // Can't Test() if Test is not sealed or open.
 
-class Plane(name: String, color: String, val engines: Int, val doors: Int): Vehicle(name, color) {
-    override fun move() {
-        this.flying()
-        super.move()
-    }
-
-    fun flying() {
-        println("$name is flying.")
     }
 }
+
+sealed class Result(val message: String) {
+    fun showMessage() {
+        println("Result: $message")
+    }
+    class Success(message: String): Result(message)
+    sealed class Error(message: String): Result(message) {
+        class RecoverableError(exception: Exception, message: String): Error(message)
+        class NonRecoverableError(exception: Exception, message: String): Error(message)
+    }
+    class Progress(message: String): Result(message)
+}
+
