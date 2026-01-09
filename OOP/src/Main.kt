@@ -1,38 +1,38 @@
-fun main() {
-    val loginButton = Button(
-        "Login",
-        1232,
-        object : OnClickListener {
-            override fun onClick() {
-                // Log in the user.
-            }
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KProperty
 
-        }
-    )
-    val signUpButton = Button(
-        "Sign Up",
-        23423,
-        object : OnClickListener {
-            override fun onClick() {
-                // Sign up the user.
-            }
-        }
-    )
+fun main() {
+    val user = User()
+    with(user) {
+        firstName = "Kel"
+        lastName = "Kamara"
+    }
+    with(user) {
+        println(firstName)
+        println(lastName)
+    }
 }
 
-class Button(
-    val text: String,
-    val id: Int,
-    onClickListener: OnClickListener
-)
+class User {
+    var firstName by FormatDelegate()
+    var lastName by FormatDelegate()
+}
 
-class ClickListener(): OnClickListener {
-    override fun onClick() {
+class FormatDelegate: ReadWriteProperty<Any?, String> {
+    private var formattedString: String = ""
 
+    override fun getValue(
+        thisRef: Any?,
+        property: KProperty<*>,
+    ): String {
+        return formattedString
     }
 
-}
-
-interface OnClickListener {
-    fun onClick()
+    override fun setValue(
+        thisRef: Any?,
+        property: KProperty<*>,
+        value: String
+    ) {
+        formattedString = value.lowercase()
+    }
 }

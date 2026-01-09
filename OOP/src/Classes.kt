@@ -104,11 +104,11 @@ abstract class Vehicle() {
     }
 }*/
 
-data class User(
+/*data class User(
     var firstName: String,
     var lastName: String,
     var age: Int
-)
+)*/
 
 interface Engine {
     fun startEngine()
@@ -136,4 +136,47 @@ class Tesla(val name: String, val color: String): Engine {
     override fun startEngine() {
         println("Tesla is starting the engine.")
     }
+}
+
+class Button(
+    val text: String,
+    val id: Int,
+    onClickListener: OnClickListener
+)
+
+class ClickListener(): OnClickListener {
+    override fun onClick() {
+
+    }
+
+}
+
+interface OnClickListener {
+    fun onClick()
+}
+
+class App: A by FirstDelegate(), B by SecondDelegate() {
+    override fun print() {
+        TODO("Not yet implemented")
+    }
+
+    override fun print2() {
+        TODO("Not yet implemented")
+    }
+}
+
+interface A {
+    fun print()
+}
+
+interface B {
+    fun print2()
+}
+
+open class FirstDelegate: A {
+    override fun print() {}
+}
+
+open class SecondDelegate: B {
+    override fun print2() {}
 }
