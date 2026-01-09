@@ -22,11 +22,11 @@ object Database {
     }
 }
 
-class User(var firstName: String, var lastName: String, var age: Int) {
+/*class User(var firstName: String, var lastName: String, var age: Int) {
     init {
         println("User: $firstName was created.")
     }
-}
+}*/
 
 enum class Direction(var direction: String, var distance: Int) {
     NORTH("north", 10),
@@ -83,4 +83,23 @@ sealed class Result(val message: String) {
         class NonRecoverableError(exception: Exception, message: String): Error(message)
     }
     class Progress(message: String): Result(message)
+}
+
+abstract class Vehicle() {
+    val text = "Some text." // Cannot have properties initialised in interfaces.
+
+    abstract fun move()
+
+    abstract fun stop()
+}
+
+class Car(var name: String, var color: String, val engines: Int, val doors: Int): Vehicle() {
+
+    override fun move() {
+
+    }
+
+    override fun stop() {
+
+    }
 }

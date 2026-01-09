@@ -1,23 +1,24 @@
 fun main() {
+    val user1 = User(
+        "Kel",
+        "Kamara",
+        29
+    )
+    val user2 = User(
+        "Kel",
+        "Kamara",
+        29
+    )
 
+    println(user1 == user2)
+
+    println(user1)
+    println(user2)
 }
 
-abstract class Vehicle() {
-    val text = "Some text." // Cannot have properties initialised in interfaces.
-
-    abstract fun move()
-
-    abstract fun stop()
-}
-
-class Car(var name: String, var color: String, val engines: Int, val doors: Int): Vehicle() {
-
-    override fun move() {
-
-    }
-
-    override fun stop() {
-
-    }
-}
+data class User(
+    var firstName: String,
+    var lastName: String,
+    var age: Int
+)
 
