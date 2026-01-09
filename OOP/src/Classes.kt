@@ -47,6 +47,7 @@ class ListView(val items: Array<String>) {
     }
 }
 
+/*
 open class Vehicle(open val name: String, val color: String) {
     open fun move() {
         println("$name is moving.")
@@ -69,4 +70,17 @@ class Plane(name: String, color: String, val engines: Int, val doors: Int): Vehi
     fun flying() {
         println("$name is flying.")
     }
+}
+*/
+
+sealed class Result(val message: String) {
+    fun showMessage() {
+        println("Result: $message")
+    }
+    class Success(message: String): Result(message)
+    sealed class Error(message: String): Result(message) {
+        class RecoverableError(exception: Exception, message: String): Error(message)
+        class NonRecoverableError(exception: Exception, message: String): Error(message)
+    }
+    class Progress(message: String): Result(message)
 }
