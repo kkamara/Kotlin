@@ -1,71 +1,19 @@
 fun main() {
-//    val numbers = mutableListOf(
-//        2, 5, 1, 40, 20, 100, 60
-//    )
-//    val sorted = numbers.sorted()
-//    println(sorted)
-    val laptops = mutableListOf(
-        Laptop("Dell", 2021, 4, 600),
-        Laptop("Acer", 2020, 16, 800),
-        Laptop("Apple", 2022, 8, 1000)
-    )
-//    print("\n")
-//    laptops.sorted().forEach {
-//        println(it)
-//    }
-//    print("\n")
-//    laptops.sortedWith(ComparatorRam()).forEach { println(it) }
-//    print("\n")
-//    laptops.sortedWith(ComparatorYear()).forEach { println(it) }
-
-//    laptops.sortedWith(compareBy { it.price }).forEach { println(it) }
-//    print("\n")
-//    laptops.sortedWith(compareBy { it.ram }).forEach { println(it) }
-//    print("\n")
-//    laptops.sortedWith(compareBy { it.year }).forEach { println(it) }
-
-    laptops.sortedBy { it.price }.forEach { println(it) }
-    print("\n")
-    laptops.sortedBy { it.ram }.forEach { println(it) }
-    print("\n")
-    laptops.sortedWith(compareBy<Laptop> { it.year }.thenBy { it.price }).forEach { println(it) }
+    println(searchElement(27, mutableListOf(
+        1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30
+    )))
 }
 
-data class Laptop(val brand: String, val year: Int, val ram: Int, val price: Int)/*: Comparable<Laptop>*/ {
-//    override fun compareTo(other: Laptop): Int {
-//        return if (this.price > other.price) {
-//            println("In if stmt: Swapping ${this.brand} with ${other.brand}")
-//            1
-//        } else if (this.price < other.price) {
-//            println("In if stmt: Swapping ${this.brand} with ${other.brand}")
-//            -1
-//        } else {
-//            0
-//        }
-//    }
+private fun searchElement(
+    searchedElement: Int, numbers: MutableList<Int>
+): Int {
+    var i = 0
+    for (number in numbers) {
+        i++
+        println("Searched number: $i")
+        if (number == searchedElement) {
+            return number
+        }
+    }
+    return -1
 }
-
-//class ComparatorRam: Comparator<Laptop> {
-//    override fun compare(laptop1: Laptop, laptop2: Laptop): Int {
-//        return if (laptop1.ram > laptop2.ram) {
-//            1
-//        } else if (laptop1.ram < laptop2.ram) {
-//            -1
-//        } else {
-//            0
-//        }
-//    }
-//}
-//
-//class ComparatorYear: Comparator<Laptop> {
-//    override fun compare(laptop1: Laptop, laptop2: Laptop): Int {
-//        return if (laptop1.year > laptop2.year) {
-//            1
-//        } else if (laptop1.year < laptop2.year) {
-//            -1
-//        } else {
-//            0
-//        }
-//    }
-//
-//}
