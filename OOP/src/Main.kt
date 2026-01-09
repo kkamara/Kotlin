@@ -1,24 +1,31 @@
 fun main() {
-    val user1 = User(
-        "Kel",
-        "Kamara",
-        29
-    )
-    val user2 = User(
-        "Kel",
-        "Kamara",
-        29
-    )
 
-    println(user1 == user2)
-
-    println(user1)
-    println(user2)
 }
 
-data class User(
-    var firstName: String,
-    var lastName: String,
-    var age: Int
-)
+interface Engine {
+    fun startEngine()
+}
 
+class Car(val name: String, val color: String): Engine {
+    override fun startEngine() {
+        println("The car is starting the engine.")
+    }
+}
+
+class Truck(val name: String, val color: String): Engine {
+    override fun startEngine() {
+        println("The truck is starting the engine.")
+    }
+}
+
+class Plane(val name: String, val color: String): Engine {
+    override fun startEngine() {
+        println("The plane is starting the engine.")
+    }
+}
+
+class Tesla(val name: String, val color: String): Engine {
+    override fun startEngine() {
+        println("Tesla is starting the engine.")
+    }
+}

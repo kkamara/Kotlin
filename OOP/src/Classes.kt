@@ -93,7 +93,7 @@ abstract class Vehicle() {
     abstract fun stop()
 }
 
-class Car(var name: String, var color: String, val engines: Int, val doors: Int): Vehicle() {
+/*class Car(var name: String, var color: String, val engines: Int, val doors: Int): Vehicle() {
 
     override fun move() {
 
@@ -102,4 +102,10 @@ class Car(var name: String, var color: String, val engines: Int, val doors: Int)
     override fun stop() {
 
     }
-}
+}*/
+
+data class User(
+    var firstName: String,
+    var lastName: String,
+    var age: Int
+)
