@@ -1,13 +1,11 @@
 fun main() {
     val numbers = listOf(
-        "one", "two", "three", "four", "five"
+        6, 10, 14, 4, 100
     )
-    println(numbers.elementAt(3))
-    println(numbers.first())
-    println(numbers.last())
-    println("\n")
-    println(numbers.first { 3 < it.length })
-    println(numbers.last { it.startsWith("f") })
-    println(numbers.random())
-    println(numbers.isEmpty())
+    println("The sum is ${numbers.sum()}.")
+    println("The count is ${numbers.count()}.")
+    println("The average is ${numbers.average()}.")
+    println("The max value is ${numbers.maxOrNull()}.")
+    println("The min value is ${numbers.minOrNull()}.")
+    println("The sum is ${numbers.sumOf { 2 * it }}")
 }
