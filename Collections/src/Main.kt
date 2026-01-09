@@ -1,17 +1,12 @@
 fun main() {
-    val user1 = User("Name 1")
-    val user2 = User("Name 2")
-    val user3 = User("Name 3")
-    val user4 = User("Name 4")
-    val user5 = User("Name 5")
-    val user6 = User("Kel")
-    val user7 = User("Kel")
-    val names = mutableSetOf<User>(
-        user1, user2, user3, user4,
-        user5, user6, user7
+    val users = mutableMapOf<Int, String>(
+        1 to "Maria",
+        2 to "Kel",
+        3 to "John"
     )
-
-    names.forEach { println(it.name) }
+    users[5] = "Vlad"
+    users.remove(2)
+    users.forEach { t, u ->
+        println("$t and $u")
+    }
 }
-
-data class User(val name: String)
