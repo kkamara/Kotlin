@@ -17,10 +17,12 @@ fun main() {
     val signUpButton = Button("Sign Up", 2345) {
 //      Sign up the user.
     }
+
+    upperCase("hello") { it.uppercase() }
 }
 
 class Button(val text: String, val id: Int, val onClickListener: () -> Unit) {
-    init{
+    init {
         onClickListener()
     }
 }
@@ -31,4 +33,10 @@ fun add(a: Int, b: Int, action: (Int) -> Unit, c: Int) {
 
 fun add(a: Int, b: Int, action: (Int) -> Unit) {
     action(a + b)
+}
+
+fun upperCase(str: String, myFunction: (String) -> String) {
+    val upperCasedWord = myFunction(str)
+
+    println(upperCasedWord)
 }
