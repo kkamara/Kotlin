@@ -8,17 +8,11 @@ fun main() { // Executed on the main thread.
     val start = System.currentTimeMillis()
     // Parent coroutine.
     val parentJob = CoroutineScope(Dispatchers.Default).launch {
-        val job1 = launch { // Child coroutine.
-            try {
-                println(getData1(Thread.currentThread().name))
-            } catch (ex: CancellationException) {
-                println("Exception caught safely: ${ex.message}")
-            } finally {
-                println("Resources closed safely.")
-            }
+        // The following returns null if the timeout is exceeded.
+        val job1 = withTimeoutOrNull(1000) {
+            println(getData1(Thread.currentThread().name))
         }
-        job1.cancel(CancellationException("My own error message."))
-        job1.join()
+        println(job1)
         val job2 = launch {
             println(getData2(Thread.currentThread().name))
         }
