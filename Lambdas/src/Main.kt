@@ -1,5 +1,3 @@
-import jdk.internal.util.StaticProperty.userName
-
 fun main() {
 /*
     If a function can accept a function as a parameter that is called a Higher Order Function.
@@ -7,8 +5,11 @@ fun main() {
     If a function can do both, that is also called a Higher Order Function.
     A lambda is a function with no name.
  */
-//    add(5, 3, { a: Int -> println(a) }, 2)
-    add(5, 3) { a: Int -> println(a) }
+//    add(5, 3, { a: Int -> println(a) })
+    add(5, 3) { // No params? No problem.
+        println("test")
+        println("test2")
+    }
 
     val loginButton = Button("Login", 34345) {
 //      Login user.
@@ -79,12 +80,12 @@ class Button(val text: String, val id: Int, val onClickListener: () -> Unit) {
     }
 }
 
-fun add(a: Int, b: Int, action: (Int) -> Unit, c: Int) {
-    action(a + b)
-}
+//fun add(a: Int, b: Int, action: (Int) -> Unit) {
+//    action(a + b)
+//}
 
-fun add(a: Int, b: Int, action: (Int) -> Unit) {
-    action(a + b)
+fun add(a: Int, b: Int, action: () -> Unit) {
+    action()
 }
 
 fun upperCase(str: String, myFunction: (String) -> String) {
