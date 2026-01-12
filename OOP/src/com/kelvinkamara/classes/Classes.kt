@@ -1,4 +1,6 @@
-//class Car(name: String, var model: String, var color: String, var doors: Int) {
+package com.kelvinkamara.classes
+
+//Car(name: String, var model: String, var color: String, var doors: Int) {
 //    var name = name.trim()
 //
 //    fun move() {
@@ -180,3 +182,28 @@ open class FirstDelegate: A {
 open class SecondDelegate: B {
     override fun print2() {}
 }
+
+private fun getData() {
+    println("Getting the data.")
+}
+
+internal class Team<T: Player>(val name: String, private val players: MutableList<T>) {
+    fun addPlayer(player: T) {
+        if (players.contains(player)) {
+            println("Player: ${player.name} is already in the team ${this.name}.")
+        } else {
+            players.add(player)
+            println("Player: ${player.name} was added to the team ${this.name}.")
+        }
+    }
+}
+
+open class Player(val name: String)
+
+class FootballPlayer(name: String) : Player(name)
+
+class BaseballPlayer(name: String) : Player(name)
+
+open class GamesPlayer(name: String) : Player(name)
+
+class CounterStrikePlayer(name: String) : GamesPlayer(name)
