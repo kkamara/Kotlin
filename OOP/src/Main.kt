@@ -1,4 +1,4 @@
-class Team<T : Player>(val name: String, private val players: MutableList<out T>) {
+class Team<T>(val name: String, private val players: MutableList<in T>) where T: Player, T: Listener {
     fun addPlayer(player: T) {
         if (players.contains(player)) {
             println("Player: ${player.name} is already in the team ${this.name}.")
@@ -11,7 +11,12 @@ class Team<T : Player>(val name: String, private val players: MutableList<out T>
 
 open class Player(val name: String)
 
-class FootballPlayer(name: String) : Player(name)
+class FootballPlayer(name: String) : Player(name), Listener {
+    override fun listen() {
+
+    }
+
+}
 
 class BaseballPlayer(name: String) : Player(name)
 
@@ -20,25 +25,22 @@ open class GamesPlayer(name: String) : Player(name)
 class CounterStrikePlayer(name: String) : GamesPlayer(name)
 
 fun main() {
-    val mixedList = mutableListOf(
-        1, 2, 360, 'a', 'b', 'c', "hello", "world"
+//  Upper bounds (T requirements at the end of line 1).
+//      Team<T: Player> would also be an upper bound.
+    val footballTeam = Team<Player>(
+        "Football Team",
+        mutableListOf<FootballPlayer>(
+            FootballPlayer("Player 1"), FootballPlayer("Player 2")
+        )
     )
-
-    val specificList = getSpecificTypes<Char>(mixedList)
-
-    for (element in specificList) {
-        println(element)
-    }
+    val gamesTeam = Team<FootballPlayer>(
+        "Games Team",
+        mutableListOf<GamesPlayer>(
+            GamesPlayer("Player 1"), GamesPlayer("Player 2")
+        )
+    )
 }
 
-inline fun<reified T> getSpecificTypes(list: List<Any>): List<T> {
-    val specificList = mutableListOf<T>()
-
-    for (element in list) {
-        if (element is T) {
-            specificList.add(element)
-        }
-    }
-
-    return specificList
+interface Listener {
+    fun listen()
 }
