@@ -8,17 +8,22 @@ fun main() { // Executed on the main thread.
     val start = System.currentTimeMillis()
     // Parent coroutine.
     val parentJob = CoroutineScope(Dispatchers.Default).launch {
-        val job1 = launch { // Child coroutine.
-            val result1 = getData1(Thread.currentThread().name)
-            println(result1)
+        val jobDeferred1: Deferred<Int> = async { // Child coroutine.
+            getData1(Thread.currentThread().name)
+            29
         }
-//        job1.join() // Run in sequence, not in parallel.
-        val job2 = launch {
-            val result2 = getData2(Thread.currentThread().name)
-            println(result2)
+//        jobDeferred1.join() // Run in sequence, not in parallel.
+        val jobDeferred2: Deferred<String> = async {
+            getData2(Thread.currentThread().name)
         }
+        println("${jobDeferred1.await()}\n${jobDeferred2.await()}")
     }
     runBlocking { parentJob.join() }
+    parentJob.invokeOnCompletion {
+        it?.let {
+            println("Parent job FAILED: ${it.message}")
+        } ?: println("Parent job SUCCESS!")
+    }
     println("Total time: ${System.currentTimeMillis() - start}ms")
 
     println("Main program ends: ${Thread.currentThread().name}")
