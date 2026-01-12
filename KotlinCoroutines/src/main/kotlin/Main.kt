@@ -55,3 +55,13 @@ private suspend fun getData3(threadName: String): String {
     println("Fake work3 finished: $threadName")
     return "Result 3"
 }
+
+private suspend fun setTextOnMainThread(input: String) {
+//    From a coroutine, we switch context back to the main
+//    thread so we can update the UI.
+//    Because if we try to update the UI from a background
+//    thread, the app will crash.
+    withContext(Dispatchers.Main) {
+//        Add code to update the UI.
+    }
+}
