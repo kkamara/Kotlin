@@ -20,6 +20,7 @@ open class GamesPlayer(name: String) : Player(name)
 class CounterStrikePlayer(name: String) : GamesPlayer(name)
 
 fun main() {
+//  inline and reified for runtime type checking.
     val mixedList = mutableListOf(
         1, 2, 360, 'a', 'b', 'c', "hello", "world"
     )
