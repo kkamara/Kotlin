@@ -1,21 +1,4 @@
-fun main() {
-    val footballPlayer = FootballPlayer("Football Player 1")
-    val footballPlayer2 = FootballPlayer("Football Player 2")
-
-    val baseballPlayer = BaseballPlayer("Baseball Player 1")
-    val baseballPlayer2 = BaseballPlayer("Baseball Player 2")
-//  Implicitly set FootballPlayer type.
-    val footballTeam = Team("Football Team", mutableListOf(footballPlayer))
-    footballTeam.addPlayer(footballPlayer2)
-//    footballTeam.addPlayer(baseballPlayer) // Not the generic type given.
-
-    val baseballTeam = Team("Baseball Team", mutableListOf(baseballPlayer))
-    baseballTeam.addPlayer(baseballPlayer2)
-//  Explicitly set GamesPlayer type.
-    val gamesTeam = Team<GamesPlayer>("Games Team", mutableListOf())
-}
-
-class Team<T: Player>(val name: String, val players: MutableList<T>) {
+class Team<T : Player>(val name: String, private val players: MutableList<in T>) {
     fun addPlayer(player: T) {
         if (players.contains(player)) {
             println("Player: ${player.name} is already in the team ${this.name}.")
@@ -32,4 +15,19 @@ class FootballPlayer(name: String) : Player(name)
 
 class BaseballPlayer(name: String) : Player(name)
 
-class GamesPlayer(name: String) : Player(name)
+open class GamesPlayer(name: String) : Player(name)
+
+class CounterStrikePlayer(name: String) : GamesPlayer(name)
+
+fun main() {
+//  Covariance: set line 1 `in` to `out`.
+//    val footballTeam = Team<Player>(
+//        "Football Team",
+//        mutableListOf<FootballPlayer>(FootballPlayer("Player 1"), FootballPlayer("Player 2"))
+//    )
+//  Contravariance
+    val gamesTeam = Team<CounterStrikePlayer>(
+        "Games Team",
+        mutableListOf<GamesPlayer>(GamesPlayer("Player 1"), GamesPlayer("Player 2"))
+    )
+}
