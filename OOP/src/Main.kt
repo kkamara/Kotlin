@@ -25,7 +25,8 @@ open class GamesPlayer(name: String) : Player(name)
 class CounterStrikePlayer(name: String) : GamesPlayer(name)
 
 fun main() {
-//  Upper bounds (T requirements at the end of line 1).
+//  Upper bounds (T requirements at the end of line 1,
+//      and at line 51).
 //      Team<T: Player> would also be an upper bound.
     val footballTeam = Team<Player>(
         "Football Team",
@@ -39,8 +40,14 @@ fun main() {
             GamesPlayer("Player 1"), GamesPlayer("Player 2")
         )
     )
+
+    addPlayer(FootballPlayer("Player 1"))
 }
 
 interface Listener {
     fun listen()
+}
+
+fun <T> addPlayer(player: T) where T: Player, T: Listener {
+
 }
